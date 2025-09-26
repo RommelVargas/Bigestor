@@ -5,4 +5,4 @@ packaging==25.0
 sqlparse==0.5.3
 tzdata==2025.2
 whitenoise==6.11.0
-'django-insecure-jdh-r!ihbj#u6xea(o)h8y(bxjl957w0#rz3pegil_yq5nee!&'
+
