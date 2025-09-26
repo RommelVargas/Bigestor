@@ -1,0 +1,11 @@
+{% extends "gestion/base.html" %}
+{% block content %}
+<div class="text-center p-5 bg-white rounded shadow-sm">
+    <h1 class="display-3 text-green">SDGC 🚀</h1>
+    <p class="lead text-muted">Sistema Digital de Gestión de Codigestión.</p>
+    <p class="fs-4 text-blue mt-4">"Convierte tus residuos en energía y fertilizante."</p>
+    <a href="{% url 'dashboard' %}" class="btn btn-lg btn-success mt-5">
+        <i class="fas fa-play-circle me-2"></i> Iniciar
+    </a>
+</div>
+{% endblock content %}

@@ -1,0 +1,75 @@
+{% extends "gestion/base.html" %}
+{% block content %}
+<h2 class="text-green"><i class="fas fa-flask me-2"></i> Nueva Mezcla de Residuos</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="p-4 bg-white rounded shadow-sm">
+            <form method="POST">
+                {% csrf_token %}
+                <p class="text-muted mb-4">Ingrese la cantidad de residuos. El agua requerida se calculará automáticamente para el tanque IBC (1000 L).</p>
+                
+                {% for field in form %}
+                    <div class="mb-3">
+                        <label for="{{ field.id_for_label }}" class="form-label">
+                            {{ field.label }}
+                        </label>
+                        {{ field }}
+                        {% if field.help_text %}
+                            <div class="form-text">{{ field.help_text }}</div>
+                        {% endif %}
+                        {% if field.errors %}
+                            <div class="text-danger small">{{ field.errors }}</div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                
+                <button type="submit" class="btn btn-primary mt-3">
+                    <i class="fas fa-calculator me-2"></i> Calcular C/N y Nutrientes
+                </button>
+            </form>
+        </div>
+    </div>
+
+    {% if resultado %}
+    <div class="col-md-6">
+        <div class="p-4 rounded shadow-lg h-100 d-flex flex-column bg-white">
+            
+            <h4 class="text-green"><i class="fas fa-microscope me-2"></i> Nutrientes Teóricos (Biofertilizante)</h4>
+            <table class="table table-sm table-bordered mt-3">
+                <thead>
+                    <tr class="table-success">
+                        <th>Nutriente</th>
+                        <th>Concentración (g/L)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Nitrógeno (N)</td>
+                        <td>{{ resultado.nutrientes.N }}</td>
+                    </tr>
+                    <tr>
+                        <td>Fósforo (P)</td>
+                        <td>{{ resultado.nutrientes.P }}</td>
+                    </tr>
+                    <tr>
+                        <td>Potasio (K)</td>
+                        <td>{{ resultado.nutrientes.K }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="alert alert-{{ resultado.alerta }} mt-3">
+                <h5 class="alert-heading">Relación C/N: {{ resultado.cn }}</h5>
+                <p class="mb-0">{{ resultado.recomendacion }}</p>
+            </div>
+            
+            <p class="small text-muted mt-auto mb-0">
+                *Nota: Estos valores son estimaciones teóricas y pueden variar en el proceso real.
+            </p>
+            
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock content %}

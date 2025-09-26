@@ -1,0 +1,52 @@
+{% extends "gestion/base.html" %}
+{% block content %}
+<h2 class="mb-4 text-green"><i class="fas fa-chart-line me-2"></i> Panel Principal</h2>
+
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card p-3 text-center h-100 shadow-sm card-custom-bg">
+            <i class="fas fa-battery-half fa-3x text-blue mb-3"></i>
+            <h4 class="card-title">Biogás Producido</h4>
+            <p class="fs-5">{{ biogas_dia }} m³ / día</p>
+            <p class="text-muted">Acumulado: {{ biogas_acumulado }} m³</p>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card p-3 text-center h-100 shadow-sm card-custom-bg">
+            <i class="fas fa-leaf fa-3x text-green mb-3"></i>
+            <h4 class="card-title">Biofertilizante</h4>
+            <p class="fs-5">{{ biofertilizante_dia }} L / día</p>
+            <p class="text-muted">Acumulado: {{ biofertilizante_acumulado }} L</p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        {% with estado_color="" %}
+            {% if estado_biodigestor == 'verde' %}{% with estado_color="estado-verde" %}{% endwith %}
+            {% elif estado_biodigestor == 'amarillo' %}{% with estado_color="estado-amarillo" %}{% endwith %}
+            {% else %}{% with estado_color="estado-rojo" %}{% endwith %}{% endif %}
+
+            <div class="card p-3 text-center h-100 shadow-lg {{ estado_color }}">
+                <i class="fas fa-wrench fa-3x mb-3"></i>
+                <h4 class="card-title">Estado del Biodigestor</h4>
+                <p class="fs-5 mt-2">{{ mensaje_estado }}</p>
+                <p class="mt-auto">({{ estado_biodigestor|upper }})</p>
+            </div>
+        {% endwith %}
+    </div>
+</div>
+
+<h3 class="mt-5 mb-3 text-blue">Funciones Rápidas</h3>
+<div class="list-group">
+    <a href="{% url 'nueva_mezcla' %}" class="list-group-item list-group-item-action">
+        <i class="fas fa-flask me-2"></i> Nueva mezcla: Simular el ingreso de residuos.
+    </a>
+    <a href="{% url 'monitoreo' %}" class="list-group-item list-group-item-action">
+        <i class="fas fa-thermometer-half me-2"></i> Monitoreo: Ingresar pH y Temperatura.
+    </a>
+    <a href="{% url 'nutrientes' %}" class="list-group-item list-group-item-action">
+        <i class="fas fa-vial me-2"></i> Predicción de Nutrientes: Ver el resultado del Biofertilizante.
+    </a>
+</div>
+{% endblock content %}

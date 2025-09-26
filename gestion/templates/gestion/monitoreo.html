@@ -1,0 +1,40 @@
+{% extends "gestion/base.html" %}
+{% block content %}
+<h2 class="text-blue"><i class="fas fa-thermometer-half me-2"></i> Monitoreo Simple</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="p-4 bg-white rounded shadow-sm">
+            <form method="POST">
+                {% csrf_token %}
+                <p class="text-muted mb-4">Ingrese mediciones caseras (pH con tiras y temperatura) para una interpretación rápida.</p>
+                
+                {% for field in form %}
+                    <div class="mb-3">
+                        <label for="{{ field.id_for_label }}" class="form-label">
+                            {{ field.label }}
+                        </label>
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                
+                <button type="submit" class="btn btn-info mt-3 text-white">
+                    <i class="fas fa-search me-2"></i> Interpretar
+                </button>
+            </form>
+        </div>
+    </div>
+
+    {% if interpretacion %}
+    <div class="col-md-6">
+        <div class="alert alert-{{ interpretacion.alerta }} p-4 rounded shadow-lg h-100 d-flex flex-column justify-content-center">
+            <h4 class="alert-heading">Interpretación de Datos</h4>
+            <p class="fs-5">{{ interpretacion.mensaje }}</p>
+            <hr>
+            <p class="mb-1">pH Ingresado: {{ interpretacion.ph }}</p>
+            <p class="mb-0">Temperatura: {{ interpretacion.temp }} °C</p>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock content %}

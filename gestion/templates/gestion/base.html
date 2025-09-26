@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDGC - Sistema de Codigestión</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+          rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <style>
+        /* Estilos personalizados para los colores temáticos */
+        body { background-color: #f7f9fc; } /* Fondo claro */
+        .navbar { background-color: #28a745; } /* Verde principal */
+        .card-custom-bg { background-color: #f8f9fa; } /* Beige/Gris claro para tarjetas */
+        .text-green { color: #28a745; }
+        .text-blue { color: #007bff; }
+        .text-brown { color: #8d6e63; }
+        
+        /* Estilos para estado del biodigestor (CORREGIDO: texto para amarillo) */
+        .estado-verde { background-color: #28a745; color: white; }
+        .estado-amarillo { 
+            background-color: #ffc107; 
+            color: #343a40; /* Texto oscuro para fondo claro */
+        } 
+        .estado-rojo { background-color: #dc3545; color: white; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark shadow">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'inicio' %}">
+                <i class="fas fa-seedling me-2"></i> SDGC
+            </a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'nueva_mezcla' %}">Nueva Mezcla</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'monitoreo' %}">Monitoreo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'nutrientes' %}">Nutrientes</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        {% block content %}
+        {% endblock content %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
