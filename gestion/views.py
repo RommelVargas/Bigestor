@@ -140,18 +140,68 @@ def servicio_al_cliente(request):
 # 7. Tablas Teóricas
 def tablas_teoricas(request):
     """Muestra las tablas de referencia con mezclas precalculadas."""
-    # Datos de referencia para mezclas óptimas (simulados)
+    
+    # --- Datos para BIOGÁS (enfocados en C/N) ---
     mezclas_biogas = [
-        {'id': 1, 'nombre': 'Mezcla Estándar C/N', 'pulpa_kg': 100, 'rastrojo_kg': 35, 'agua_L': 670, 'cn_ratio': '30.5:1', 'recomendacion': 'Óptima para inicio.', 'alerta': 'success'},
-        {'id': 2, 'nombre': 'Mezcla Alta Carga', 'pulpa_kg': 150, 'rastrojo_kg': 50, 'agua_L': 550, 'cn_ratio': '29.8:1', 'recomendacion': 'Requiere monitoreo constante de pH.', 'alerta': 'warning'},
-        {'id': 3, 'nombre': 'Mezcla Conservadora', 'pulpa_kg': 80, 'rastrojo_kg': 25, 'agua_L': 750, 'cn_ratio': '31.2:1', 'recomendacion': 'Fácil mantenimiento.', 'alerta': 'success'},
+        {'id': 1, 
+         'nombre': 'Mezcla Balanceada (Óptima C/N)', 
+         'pulpa_kg': 100, 
+         'rastrojo_kg': 35, 
+         'agua_L': 670, 
+         'cn_ratio': '30.5:1', 
+         'recomendaciones': 'Mejor mezcla para biogás (C/N ideal).', 
+         'alerta': 'success'},
+        
+        {'id': 2, 
+         'nombre': 'Mezcla para Alta Carga', 
+         'pulpa_kg': 150, 
+         'rastrojo_kg': 50, 
+         'agua_L': 550, 
+         'cn_ratio': '29.8:1', 
+         'recomendaciones': 'Balanceada, alto rendimiento de metano.', 
+         'alerta': 'success'},
+         
+        {'id': 3, 
+         'nombre': 'Mezcla Conservadora', 
+         'pulpa_kg': 80, 
+         'rastrojo_kg': 25, 
+         'agua_L': 750, 
+         'cn_ratio': '31.2:1', 
+         'recomendaciones': 'Bajo riesgo de acidificación.', 
+         'alerta': 'success'},
     ]
 
-    # Datos de referencia para concentraciones de nutrientes (simulados)
+    # --- Datos para NUTRIENTES (enfocados en NPK) ---
     mezclas_nutrientes = [
-        {'id': 1, 'nombre': 'Biofertilizante Tipo A', 'pulpa_kg': 100, 'rastrojo_kg': 35, 'N_gL': 1.6, 'P_gL': 0.85, 'K_gL': 1.35},
-        {'id': 2, 'nombre': 'Biofertilizante Tipo B (Bajo Carbono)', 'pulpa_kg': 120, 'rastrojo_kg': 20, 'N_gL': 1.8, 'P_gL': 0.9, 'K_gL': 1.5},
-        {'id': 3, 'nombre': 'Biofertilizante Tipo C (Alto Rastrojo)', 'pulpa_kg': 70, 'rastrojo_kg': 40, 'N_gL': 1.4, 'P_gL': 0.7, 'K_gL': 1.1},
+        {'id': 1, 
+         'nombre': 'Mezcla Balanceada', 
+         'pulpa_kg': 100, 
+         'rastrojo_kg': 35, 
+         'N_gL': 1.6, 
+         'P_gL': 0.85, 
+         'K_gL': 1.35,
+         'recomendaciones': 'Rendimiento estándar NPK y biogás equilibrado.',
+         'alerta': ''},
+         
+        {'id': 2, 
+         'nombre': 'Mezcla para Nutrientes (Alto K/N)', 
+         'pulpa_kg': 120, 
+         'rastrojo_kg': 20, 
+         'N_gL': 1.8, 
+         'P_gL': 0.9, 
+         'K_gL': 1.5,
+         'recomendaciones': 'Mejor mezcla para extraer nutrientes, alto Potasio.',
+         'alerta': 'info'},
+
+        {'id': 3, 
+         'nombre': 'Mezcla Bajo N (Alto Rastrojo)', 
+         'pulpa_kg': 70, 
+         'rastrojo_kg': 40, 
+         'N_gL': 1.4, 
+         'P_gL': 0.7, 
+         'K_gL': 1.1,
+         'recomendaciones': 'Para suelos que requieren bajo aporte de nitrógeno.',
+         'alerta': ''},
     ]
 
     context = {
