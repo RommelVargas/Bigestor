@@ -1,0 +1,75 @@
+{% extends "gestion/base.html" %}
+{% block content %}
+<h2 class="text-blue"><i class="fas fa-table me-2"></i> Tablas Teóricas de Referencia</h2>
+<p class="text-muted">Estas tablas muestran combinaciones de pulpa de café y rastrojo pre-optimizadas, ideales para usar como referencia rápida o punto de partida.</p>
+
+<div class="row g-5">
+    
+    <div class="col-12">
+        <div class="card shadow-sm p-4 bg-white">
+            <h4 class="text-green"><i class="fas fa-seedling me-2"></i> Mejores Mezclas para Biogás (Relación C/N)</h4>
+            <p class="small text-muted">Objetivo: Mantener C/N entre 28:1 y 32:1 para máxima producción de metano.</p>
+            
+            <table class="table table-striped table-hover mt-3">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Pulpa (kg)</th>
+                        <th>Rastrojo (kg)</th>
+                        <th>Agua (L)</th>
+                        <th>C/N Final</th>
+                        <th>Recomendación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for mezcla in mezclas_biogas %}
+                    <tr class="table-{{ mezcla.alerta }}">
+                        <td>{{ mezcla.nombre }}</td>
+                        <td>{{ mezcla.pulpa_kg }}</td>
+                        <td>{{ mezcla.rastrojo_kg }}</td>
+                        <td>{{ mezcla.agua_L }}</td>
+                        <td>**{{ mezcla.cn_ratio }}**</td>
+                        <td>{{ mezcla.recomendacion }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="card shadow-sm p-4 bg-white">
+            <h4 class="text-brown"><i class="fas fa-vial me-2"></i> Concentración de Nutrientes (Biofertilizante)</h4>
+            <p class="small text-muted">Estimación de la concentración de NPK en el digestato final (g/L).</p>
+
+            <table class="table table-striped table-hover mt-3">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Pulpa (kg)</th>
+                        <th>Rastrojo (kg)</th>
+                        <th>Nitrógeno (N)</th>
+                        <th>Fósforo (P)</th>
+                        <th>Potasio (K)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for mezcla in mezclas_nutrientes %}
+                    <tr>
+                        <td>{{ mezcla.nombre }}</td>
+                        <td>{{ mezcla.pulpa_kg }}</td>
+                        <td>{{ mezcla.rastrojo_kg }}</td>
+                        <td>{{ mezcla.N_gL }} g/L</td>
+                        <td>{{ mezcla.P_gL }} g/L</td>
+                        <td>{{ mezcla.K_gL }} g/L</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<p class="small text-end mt-4 text-muted">
+    *Nota: Estos valores de referencia asumen condiciones ideales de digestión y pueden variar en la práctica.
+</p>
+{% endblock content %}

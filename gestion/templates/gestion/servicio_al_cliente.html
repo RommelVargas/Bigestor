@@ -1,0 +1,39 @@
+{% extends "gestion/base.html" %}
+{% block content %}
+<h2 class="text-blue"><i class="fas fa-headset me-2"></i> Servicio al Cliente y Soporte</h2>
+
+<div class="row g-4">
+    <div class="col-md-8">
+        <div class="card p-4 shadow-sm">
+            <h4 class="card-title text-green">Contáctanos para Soporte Técnico</h4>
+            <p class="card-text">Si tienes problemas con la interpretación de los datos, el proceso de codigestión, o necesitas asistencia con tu proyecto, nuestro equipo está listo para ayudarte.</p>
+            
+            <ul class="list-group list-group-flush mt-3">
+                <li class="list-group-item">
+                    <i class="fas fa-envelope me-2 text-primary"></i> **Email:** soporte@sdgc.com
+                </li>
+                <li class="list-group-item">
+                    <i class="fas fa-phone me-2 text-primary"></i> **Teléfono:** +52 55 1234 5678
+                </li>
+                <li class="list-group-item">
+                    <i class="fas fa-clock me-2 text-primary"></i> **Horario:** Lunes a Viernes, 9:00 AM - 5:00 PM (GMT-6)
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card p-4 shadow-sm h-100">
+            <h4 class="card-title text-green">Recursos Rápidos</h4>
+            <ul class="list-group list-group-flush">
+                <a href="{% url 'nutrientes' %}" class="list-group-item list-group-item-action">
+                    <i class="fas fa-vial me-2"></i> Guía de Biofertilizante
+                </a>
+                <a href="{% url 'monitoreo' %}" class="list-group-item list-group-item-action">
+                    <i class="fas fa-chart-bar me-2"></i> Guía de pH Óptimo
+                </a>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -131,3 +131,31 @@ def nutrientes(request):
         'co2_ahorro': 50, # kg
     }
     return render(request, 'gestion/nutrientes.html', data)
+
+# 6. Soporte / Servicio al Cliente
+def servicio_al_cliente(request):
+    """Muestra la página de soporte y contacto."""
+    return render(request, 'gestion/servicio_al_cliente.html')
+
+# 7. Tablas Teóricas
+def tablas_teoricas(request):
+    """Muestra las tablas de referencia con mezclas precalculadas."""
+    # Datos de referencia para mezclas óptimas (simulados)
+    mezclas_biogas = [
+        {'id': 1, 'nombre': 'Mezcla Estándar C/N', 'pulpa_kg': 100, 'rastrojo_kg': 35, 'agua_L': 670, 'cn_ratio': '30.5:1', 'recomendacion': 'Óptima para inicio.', 'alerta': 'success'},
+        {'id': 2, 'nombre': 'Mezcla Alta Carga', 'pulpa_kg': 150, 'rastrojo_kg': 50, 'agua_L': 550, 'cn_ratio': '29.8:1', 'recomendacion': 'Requiere monitoreo constante de pH.', 'alerta': 'warning'},
+        {'id': 3, 'nombre': 'Mezcla Conservadora', 'pulpa_kg': 80, 'rastrojo_kg': 25, 'agua_L': 750, 'cn_ratio': '31.2:1', 'recomendacion': 'Fácil mantenimiento.', 'alerta': 'success'},
+    ]
+
+    # Datos de referencia para concentraciones de nutrientes (simulados)
+    mezclas_nutrientes = [
+        {'id': 1, 'nombre': 'Biofertilizante Tipo A', 'pulpa_kg': 100, 'rastrojo_kg': 35, 'N_gL': 1.6, 'P_gL': 0.85, 'K_gL': 1.35},
+        {'id': 2, 'nombre': 'Biofertilizante Tipo B (Bajo Carbono)', 'pulpa_kg': 120, 'rastrojo_kg': 20, 'N_gL': 1.8, 'P_gL': 0.9, 'K_gL': 1.5},
+        {'id': 3, 'nombre': 'Biofertilizante Tipo C (Alto Rastrojo)', 'pulpa_kg': 70, 'rastrojo_kg': 40, 'N_gL': 1.4, 'P_gL': 0.7, 'K_gL': 1.1},
+    ]
+
+    context = {
+        'mezclas_biogas': mezclas_biogas,
+        'mezclas_nutrientes': mezclas_nutrientes,
+    }
+    return render(request, 'gestion/tablas_teoricas.html', context)

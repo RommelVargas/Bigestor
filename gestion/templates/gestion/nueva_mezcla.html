@@ -35,38 +35,71 @@
     <div class="col-md-6">
         <div class="p-4 rounded shadow-lg h-100 d-flex flex-column bg-white">
             
-            <h4 class="text-green"><i class="fas fa-microscope me-2"></i> Nutrientes Teóricos (Biofertilizante)</h4>
-            <table class="table table-sm table-bordered mt-3">
-                <thead>
-                    <tr class="table-success">
-                        <th>Nutriente</th>
-                        <th>Concentración (g/L)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Nitrógeno (N)</td>
-                        <td>{{ resultado.nutrientes.N }}</td>
-                    </tr>
-                    <tr>
-                        <td>Fósforo (P)</td>
-                        <td>{{ resultado.nutrientes.P }}</td>
-                    </tr>
-                    <tr>
-                        <td>Potasio (K)</td>
-                        <td>{{ resultado.nutrientes.K }}</td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <div class="alert alert-{{ resultado.alerta }} mt-3">
-                <h5 class="alert-heading">Relación C/N: {{ resultado.cn }}</h5>
-                <p class="mb-0">{{ resultado.recomendacion }}</p>
+            <h4 class="mb-3 text-green"><i class="fas fa-chart-pie me-2"></i> Resultados de la Simulación</h4>
+
+            <ul class="nav nav-tabs" id="mezclaTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="biogas-tab" data-bs-toggle="tab" data-bs-target="#biogas" type="button" role="tab" aria-controls="biogas" aria-selected="true">
+                        <i class="fas fa-battery-half me-1"></i> Biogás (C/N)
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="nutrientes-tab" data-bs-toggle="tab" data-bs-target="#nutrientes" type="button" role="tab" aria-controls="nutrientes" aria-selected="false">
+                        <i class="fas fa-leaf me-1"></i> Biofertilizante (NPK)
+                    </button>
+                </li>
+            </ul>
+
+            <div class="tab-content pt-3 flex-grow-1">
+                
+                <div class="tab-pane fade show active" id="biogas" role="tabpanel" aria-labelledby="biogas-tab">
+                    
+                    <div class="alert alert-{{ resultado.biogas.alerta }}">
+                        <h5 class="alert-heading">Relación C/N: **{{ resultado.biogas.cn }}**</h5>
+                        <p class="mb-0">{{ resultado.biogas.recomendacion }}</p>
+                    </div>
+                    
+                    <p class="text-muted small mt-2">
+                        Volumen total de la mezcla: **{{ resultado.biogas.volumen_total }} L** (Incluye agua necesaria).
+                    </p>
+                    
+                    <p class="small text-muted mt-4 mb-0">
+                        *Mejor C/N para Biogás: 28:1 a 32:1. Una C/N óptima garantiza una producción eficiente de metano.
+                    </p>
+                </div>
+
+                <div class="tab-pane fade" id="nutrientes" role="tabpanel" aria-labelledby="nutrientes-tab">
+                    <p class="text-green fw-bold">Estimación de la calidad del Biofertilizante (Digestato):</p>
+                    
+                    <table class="table table-sm table-bordered mt-3">
+                        <thead>
+                            <tr class="table-success">
+                                <th>Nutriente</th>
+                                <th>Concentración Teórica (g/L)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Nitrógeno (N)</td>
+                                <td>{{ resultado.nutrientes.N }}</td>
+                            </tr>
+                            <tr>
+                                <td>Fósforo (P)</td>
+                                <td>{{ resultado.nutrientes.P }}</td>
+                            </tr>
+                            <tr>
+                                <td>Potasio (K)</td>
+                                <td>{{ resultado.nutrientes.K }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <p class="small text-muted mt-auto mb-0">
+                        *Nota: Estos valores son estimaciones teóricas y pueden variar en el proceso real. Se asume un 80% de conservación de Nitrógeno.
+                    </p>
+                </div>
+                
             </div>
-            
-            <p class="small text-muted mt-auto mb-0">
-                *Nota: Estos valores son estimaciones teóricas y pueden variar en el proceso real.
-            </p>
             
         </div>
     </div>

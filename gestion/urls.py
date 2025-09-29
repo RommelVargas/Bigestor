@@ -17,4 +17,10 @@ urlpatterns = [
 
     # 5. Nutrientes / Impacto (URL: /nutrientes/)
     path('nutrientes/', views.nutrientes, name='nutrientes'),
+
+    # 6. Soporte / Servicio al Cliente (URL: /soporte/)
+    path('soporte/', views.servicio_al_cliente, name='servicio_al_cliente'),
+    
+    # 7. Tablas Teóricas (URL: /tablas-teoricas/)
+    path('tablas-teoricas/', views.tablas_teoricas, name='tablas_teoricas'),
 ]
